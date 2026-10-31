@@ -17,14 +17,14 @@
             --bg-color: #07090f;
             --card-bg: #0f131d;
             --card-hover: #161c2b;
-            --accent-color: #ffffff; /* Weiß als edler Akzent */
+            --accent-color: #ffffff;
             --accent-hover: #e0e0e0;
             --text-main: #ffffff;
             --text-muted: #9aa4b2;
             --border-color: #1e293b;
             --live-red: #ff3333;
-            --uk-blue: #012169; /* Britisches Blau */
-            --uk-red: #c8102e;  /* Britisches Rot */
+            --uk-blue: #012169;
+            --uk-red: #c8102e;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); padding: 15px; display: flex; justify-content: center; }
@@ -45,7 +45,6 @@
         .ticker-track:hover { animation-play-state: paused; }
         .ticker-item { display: inline-flex; align-items: center; background: #131926; border: 1px solid var(--border-color); padding: 6px 14px; margin: 0 6px; border-radius: 8px; color: #ffffff; font-size: 0.82rem; font-weight: 500; gap: 10px; }
         
-        /* Ticker Vereinsfarben */
         .ticker-item.lfc-ticker { background: rgba(200, 16, 46, 0.25) !important; border-color: #c8102e; }
         .ticker-item.arsenal-ticker { background: rgba(239, 1, 7, 0.25) !important; border-color: #ef0107; }
         .ticker-item.mci-ticker { background: rgba(108, 171, 221, 0.25) !important; border-color: #6cabdd; }
@@ -62,7 +61,6 @@
         .goal-alert-scorer { font-size: 1rem; font-weight: bold; margin-bottom: 8px; color: #fff; }
         .goal-alert-match { font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 6px; }
 
-        /* Steuerung & Layout */
         .controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px; background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); flex-wrap: wrap; }
         button, select { background: #161c2b; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: background 0.2s; }
         button:hover, select:hover { background: #202a40; border-color: var(--uk-blue); }
@@ -77,13 +75,11 @@
         .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
         h2 { font-size: 1.2rem; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: #fff; }
 
-        /* Admin Bereich Styles */
         .admin-toggle-wrapper { text-align: right; margin-top: 20px; }
         .admin-toggle-btn { background: transparent; border: 1px dashed var(--border-color); color: var(--text-muted); padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
         .admin-toggle-btn:hover { color: #fff; border-color: var(--uk-blue); }
         .admin-card { background: #131926; border: 1px solid var(--uk-red); border-radius: 12px; padding: 20px; margin-top: 20px; display: none; }
 
-        /* Spiel-Item */
         .match-card-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 15px; margin-bottom: 10px; cursor: pointer; transition: background 0.15s; }
         .match-card-item:hover { background: var(--card-hover); }
         .match-main-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; }
@@ -115,7 +111,6 @@
         tr.el-zone td:first-child { border-left: 4px solid #388bfd; }
         tr.relegation-zone td:first-child { border-left: 4px solid var(--uk-red); }
 
-        /* Vereinsfarben-Styling für Tabelle, Widgets & Match-Cards */
         tr.lfc-team { background: rgba(200, 16, 46, 0.15) !important; font-weight: bold; }
         tr.lfc-team td { border-color: rgba(200, 16, 46, 0.4); }
         .lfc-highlight { background: rgba(200, 16, 46, 0.2); border-left: 3px solid #c8102e; padding-left: 6px; border-radius: 4px; }
@@ -132,7 +127,6 @@
         tr.chelsea-team td { border-color: rgba(3, 70, 148, 0.4); }
         .chelsea-highlight { background: rgba(3, 70, 148, 0.2); border-left: 3px solid #034694; padding-left: 6px; border-radius: 4px; }
 
-        /* Modals */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: var(--card-bg); border: 1px solid var(--uk-blue); border-radius: 12px; width: 100%; max-width: 750px; max-height: 90vh; overflow-y: auto; padding: 25px; position: relative; }
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; background: none; border: none; }
@@ -282,7 +276,7 @@
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const apiKey = "297322363f3bf16e1304cfb933a0c8d5";
-        const leagueId = 39; // Premier League ID in API-Football
+        const leagueId = 39; // Premier League ID
         const season = "2026";
         const ADMIN_PIN = "1919";
         let isAdmin = false;
@@ -293,6 +287,7 @@
         let globalYellowCards = [];
         let previousScores = {};
         let smartPollingInterval = null;
+        let recentGoalsList = JSON.parse(localStorage.getItem('lfc_recent_goals_cache') || '[]');
 
         function getTeamHighlightClass(name) {
             if (name.includes("Liverpool")) return 'lfc-highlight';
@@ -436,16 +431,60 @@
             }
         }
 
-        async function logGoalToSupabase(matchId, teamName, scorerInfo) {
+        // Korrigierter Push-Dienst mit sent_goals_liverpool & passendem Schema
+        async function checkAllGoalsAndNotify(home, away, hScore, aScore, latestScorer, matchId, scoringTeam) {
+            if (!latestScorer || latestScorer.includes("Tor") || latestScorer.trim() === "⚽" || latestScorer.trim() === "Goal") return;
+
+            let uniqueGoalId = `eng_${matchId}_${hScore}:${aScore}_${latestScorer}`;
+            
+            let cleanPlayer = latestScorer.replace(/⚽\s*/, '').replace(/\(\d+['']\)/, '').replace('(Pen)', '').replace('(ET)', '').trim();
+            let minStr = latestScorer.match(/\(\d+['']\)/) ? ` ${latestScorer.match(/\(\d+['']\)/)[0]}` : '';
+
+            let goalObject = {
+                id: uniqueGoalId,
+                text: `<strong>${hScore}:${aScore}</strong> — ${home} vs ${away} (${cleanPlayer}${minStr})`
+            };
+
+            if (!recentGoalsList.some(g => g.id === uniqueGoalId)) {
+                recentGoalsList.unshift(goalObject);
+                if (recentGoalsList.length > 5) recentGoalsList = recentGoalsList.slice(0, 5);
+                localStorage.setItem('lfc_recent_goals_cache', JSON.stringify(recentGoalsList));
+            }
+
             try {
-                await supabaseClient.from('sent_goals_liverpool').insert({
-                    fixture_id: matchId,
-                    team: teamName,
-                    scorer: scorerInfo,
-                    created_at: new Date().toISOString()
-                });
+                let { data: existing, error: checkError } = await supabaseClient
+                    .from('sent_goals_liverpool')
+                    .select('goal_id')
+                    .eq('goal_id', uniqueGoalId)
+                    .maybeSingle();
+
+                if (!existing && !checkError) {
+                    let { error: insertError } = await supabaseClient
+                        .from('sent_goals_liverpool')
+                        .insert([{ 
+                            goal_id: uniqueGoalId,
+                            match_id: `eng_${matchId}`,
+                            home_score: hScore,
+                            away_score: aScore
+                        }]);
+
+                    if (!insertError) {
+                        await fetch(`${SUPABASE_URL}/functions/v1/send-push`, {
+                            method: 'POST',
+                            mode: 'cors',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                table: 'push_subscriptions_lfc',
+                                title: `⚽ GOAL! für ${scoringTeam} zum ${hScore}:${aScore}`,
+                                body: `Torschütze: ${cleanPlayer}${minStr}\n${home} : ${away} (${hScore}:${aScore})`
+                            })
+                        });
+                    } else {
+                        console.error("Supabase Insert-Fehler:", insertError);
+                    }
+                }
             } catch (e) {
-                console.error("Fehler beim Speichern des Tores:", e);
+                console.error("Fehler beim Liverpool Tor-Cache & Push:", e);
             }
         }
 
@@ -455,8 +494,6 @@
             document.getElementById("goalAlertMatch").textContent = matchInfo;
             document.getElementById("goalAlertBanner").style.display = "block";
             
-            logGoalToSupabase(matchId, teamName, scorerInfo);
-
             setTimeout(() => { hideGoalAlert(); }, 10000);
         }
 
@@ -787,7 +824,12 @@
                             if (goalsHome > previousScores[fixtureId].home || goalsAway > previousScores[fixtureId].away) {
                                 let scoringTeam = goalsHome > previousScores[fixtureId].home ? home.name : away.name;
                                 let latestGoal = events.filter(ev => ev.type === 'Goal').pop();
+                                let scorerText = latestGoal ? `⚽ ${latestGoal.player.name} (${latestGoal.time.elapsed}')` : "⚽ Goal";
+                                
                                 showGoalAlert(scoringTeam, latestGoal ? `${latestGoal.player.name} (${latestGoal.time.elapsed}. Min)` : "Goal", `${home.name} - ${away.name}`, fixtureId);
+                                
+                                // Automatischer Push & Datenbank-Eintrag
+                                checkAllGoalsAndNotify(home.name, away.name, goalsHome, goalsAway, scorerText, fixtureId, scoringTeam);
                             }
                         }
                         previousScores[fixtureId] = { home: goalsHome, away: goalsAway };
