@@ -403,7 +403,7 @@
                     body: JSON.stringify({
                         table: 'push_subscriptions_lfc',
                         title: `⚽ GOAL! für ${scoringTeam}!`,
-                        body: `Stand: ${homeScore}:${awayScore}\n${home} : ${away}${cleanPlayer ? '\nSchütze: ' + cleanPlayer + minStr : ''}`
+                        body: `Torschütze: ${cleanPlayer}${minStr}\n${home} : ${away} (${homeScore}:${awayScore})`
                     })
                 });
             } catch (e) {
